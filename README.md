@@ -1,3 +1,4 @@
+# OOP2 Assignment
 # 📚 Bookstore Management System
 
 A Java-based Bookstore Management System developed as part of the **OOP2 module**. It simulates real-world bookstore operations with a focus on modern **Java 21 features** and industry-level coding practices.
