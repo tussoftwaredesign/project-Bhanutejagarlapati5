@@ -148,36 +148,48 @@ public class Bookstore {
             executor.shutdown();
         }
     }
-    public void saveInventoryToFile(String filename) throws IOException {
-        Path path = Paths.get(filename);
-        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-            for (Book book : inventory) {
-                writer.write("%s,%s,%.2f,%d,%s%n".formatted(
-                    book.id(), book.title(), book.price(), book.stock(), book.category()));
-            }
-            System.out.println("Random book data saved to: " + path.toAbsolutePath());
-        }
-    }
+    public void saveInventoryToFile(String filename) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter Book ID: ");
+        String id = scanner.nextLine();
 
-    public void loadInventoryFromFile(String filename) throws IOException {
-        Path path = Paths.get(filename);
-        try (BufferedReader reader = Files.newBufferedReader(path)) {
-            inventory.clear();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length != 6) continue; // Skip malformed lines
-                Book book = new Book(
-                    parts[0].trim(),                        // id
-                    parts[1].trim(),                        // title
-                    parts[2].trim(),                        // author
-                    BookCategory.valueOf(parts[3].trim().toUpperCase()), // category
-                    Double.parseDouble(parts[4].trim()),    // price
-                    Integer.parseInt(parts[5].trim())       // stock
-                );
-                inventory.add(book);
-            }
+        System.out.print("Enter Book Title: ");
+        String title = scanner.nextLine();
+
+        System.out.print("Enter Book Price After Discount: ");
+        double price = scanner.nextDouble();
+
+        System.out.print("Enter Book Quantity: ");
+        int quantity = scanner.nextInt();
+        scanner.nextLine(); 
+        
+        System.out.print("Enter Book Category: ");
+        String category = scanner.nextLine();
+
+	    double totalCost = price * quantity;	
+
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(filename), StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
+            writer.write("ID: " + id);
+            writer.newLine();
+            writer.write("Title: " + title);
+            writer.newLine();
+            writer.write("Enter your Discounted Price: " + price);
+            writer.newLine();
+            writer.write("Stock: " + quantity);
+            writer.newLine();
+            writer.write("Category: " + category);
+            writer.newLine();
+            writer.write("Total Cost: " + totalCost);
+            writer.newLine();
+            writer.write("------------------------");
+            writer.newLine();
+            writer.write(" Thank you for visiting our Bookstore :)");
+            writer.newLine();
+            System.out.println("Book information saved to " + filename);
+        } catch (IOException e) {
+            System.err.println("Error saving book data: " + e.getMessage());
         }
+        scanner.close();
     }
 
     public void readBookDataFromFile(String filename) {

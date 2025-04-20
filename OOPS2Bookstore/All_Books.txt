@@ -1,3 +1,13 @@
 111,Java in Action,39.99,10,SCIENCE
 222,Mystery Lane,19.99,5,MYSTERY
 333,Fantasy World,29.99,2,FANTASY
+
+
+ID: 111
+Title: Java in Action
+Enter your Discounted Price: 31.99
+Stock: 5
+Category: Science
+Total Cost: 159.95
+------------------------
+ Thank you for visiting our Bookstore :)

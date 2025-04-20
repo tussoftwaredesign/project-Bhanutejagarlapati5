@@ -1,5 +1,0 @@
-ISBN1045,BookTitle1,Author1,23.38
-ISBN5234,BookTitle2,Author2,32.96
-ISBN8305,BookTitle3,Author3,41.03
-ISBN6573,BookTitle4,Author4,13.83
-ISBN1753,BookTitle5,Author5,41.75

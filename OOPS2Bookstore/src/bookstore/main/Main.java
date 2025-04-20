@@ -18,8 +18,8 @@ public class Main {
 
         // Seed Data
         store.addBook(new Book("111", "Java in Action", "John Doe", BookCategory.SCIENCE, 39.99, 10));
-        store.addBook(new Book("222", "Mystery Lane", "Jane Roe", BookCategory.MYSTERY, 19.99, 5));
-        store.addBook(new Book("333", "Fantasy World", "George Elf", BookCategory.FANTASY, 29.99, 2));
+        store.addBook(new Book("222", "Mystery Lane", "Jane Roe", BookCategory.MYSTERY, 19.99, 10));
+        store.addBook(new Book("333", "Fantasy World", "George Elf", BookCategory.FANTASY, 29.99, 10));
 
         ImmutableAddress address = new ImmutableAddress("123 Main St", "Cityville", "12345");
 
@@ -31,10 +31,7 @@ public class Main {
         store.addCustomer(silverCustomer);
         store.addCustomer(normalCustomer);
 
-        // Show list of customers
         List<Customer> customers = store.getCustomers();
-//        System.out.println("Available customers:");
-//        customers.forEach(c -> System.out.printf("ID: %s | Name: %s%n", c.id(), c.name()));
 
         // Select customer by ID
         Customer selectedCustomer = null;
@@ -73,20 +70,25 @@ public class Main {
             member = new RegularMember(selectedCustomer.name());
             System.out.println("Membership: Regular Member");
         }
+        System.out.println("\nAvailable books:");
+        store.searchBooks(b -> true).forEach(book -> System.out.println("- " + book.id()+"- "+ book.title()+"- "+book.category()));
 
         // Let customer purchase a book
-        System.out.print("\nEnter the title of the book to purchase: ");
-        String bookTitle = scanner.nextLine();
-        Optional<Book> foundBook = store.findBookByTitle(bookTitle);
+        Book bookToPurchase = null;
+        while (bookToPurchase == null) {
+            System.out.print("\nEnter the title of the book to purchase: ");
+            String bookTitle = scanner.nextLine();
+            Optional<Book> foundBook = store.findBookByTitle(bookTitle);
 
-        if (foundBook.isPresent()) {
-            Book book = foundBook.get();
-            double discount = selectedCustomer.getDiscount();
-            double finalPrice = book.price() * (1 - discount);
-            System.out.printf("Original Price: €%.2f%n", book.price());
-            System.out.printf("Discounted Price for %s: €%.2f%n", selectedCustomer.name(), finalPrice);
-        } else {
-            System.out.println("Book not found.");
+            if (foundBook.isPresent()) {
+                bookToPurchase = foundBook.get();
+                double discount = selectedCustomer.getDiscount();
+                double finalPrice = bookToPurchase.price() * (1 - discount);
+                System.out.printf("Original Price: €%.2f%n", bookToPurchase.price());
+                System.out.printf("Discounted Price for %s: €%.2f%n", selectedCustomer.name(), finalPrice);
+            } else {
+                System.out.println("Book not found. Please try again.");
+            }
         }
 
         // Optionally continue with main menu
@@ -146,7 +148,7 @@ public class Main {
                 }
 
                 case 0 -> {
-                    System.out.println("Goodbye!");
+                    System.out.println("Please enter below Customer Order Details!");
                     running = false;
                 }
 
@@ -165,14 +167,11 @@ public class Main {
         } else {
             System.out.println("No discount.");
         }
-
-        scanner.close();
-//        try {
-//			store.saveInventoryToFile("All_Books.txt");
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+        System.out.println("\nAvailable books in Bookstore:");
+        store.searchBooks(b -> true).forEach(book -> System.out.println("- " + book.id()+"- "+ book.title()+"- "+book.category()));
+        store.saveInventoryToFile("All_Books.txt");
         store.readBookDataFromFile("All_Books.txt");
+        scanner.close();
+        System.out.println("  Goodbye!");
     }
 }
