@@ -1,8 +1,7 @@
-Bookstore Management System
-A Java-based Bookstore Management System developed as part of the OOP2 module. It is designed to simulate real-world bookstore operations with a focus on modern Java 21 features and industry-level coding practices.
+📚 Bookstore Management System
+A Java-based Bookstore Management System developed as part of the OOP2 module, designed to simulate real-world bookstore operations with a focus on modern Java 21 features and industry-level coding practices.
 
-Features
-
+🚀 Features
 Add, update, and manage books and customers
 
 Handle different membership types: Regular, Silver, Gold
@@ -19,8 +18,7 @@ Load book data from files using NIO2
 
 Format output according to locale settings
 
-Tech Stack
-
+🛠️ Tech Stack
 Language: Java 21 (LTS)
 
 Architecture: Modular, layered (models, services, members, main)
@@ -37,26 +35,24 @@ OOP Enhancements: Sealed classes, Records, Pattern Matching
 
 Localization: Locale-aware formatting for prices and dates
 
-Java 21 Highlights Used
+💡 Java 21 Highlights Used
+✅ Sealed classes for controlled inheritance (Member types)
 
-Sealed classes for controlled inheritance (Member types)
+✅ Records for immutable data structures (e.g., ImmutableAddress)
 
-Records for immutable data structures (e.g., ImmutableAddress)
+✅ Pattern Matching and Switch Expressions for cleaner control flow
 
-Pattern Matching and Switch Expressions for cleaner control flow
+✅ Functional Interfaces (Consumer, Predicate, Function) for streamlined operations
 
-Functional Interfaces (Consumer, Predicate, Function) for streamlined operations
+✅ Stream API with operations like filter(), map(), sorted(), collect()
 
-Stream API with operations like filter(), map(), sorted(), collect()
+✅ Collectors.groupingBy() and partitioningBy() for data aggregation
 
-Collectors.groupingBy() and partitioningBy() for data aggregation
+✅ Concurrency via ExecutorService
 
-Concurrency via ExecutorService
+✅ File I/O with NIO2 API
 
-File I/O with NIO2 API
-
-Sample Use Cases
-
+🧪 Sample Use Cases
 Filter books by category or price
 
 Display books sorted by title, author, or date
@@ -67,11 +63,11 @@ Display membership expiry and validate access
 
 Support localized views (e.g., date/price formatting)
 
-Project Structure
+📂 Project Structure
 
-bookstore-management-system
-├── models → Data models: Book, Customer, etc.
-├── services → Business logic and services
-├── members → Membership hierarchy (Regular, Silver, Gold)
-├── utils → Helper utilities (e.g., comparators, file handlers)
-└── Main.java → Application entry point
+📦 bookstore-management-system
+ ┣ 📂 models           # Data models: Book, Customer, etc.
+ ┣ 📂 services         # Business logic and services
+ ┣ 📂 members          # Membership hierarchy (Regular, Silver, Gold)
+ ┣ 📂 utils            # Helper utilities (e.g., comparators, file handlers)
+ ┗ 📜 Main.java        # Application entry point.
