@@ -9,3 +9,11 @@ Category: Science
 Total Cost: 159.95
 ------------------------
  Thank you for visiting our Bookstore :)
+ID: 111
+Title: Java in Action
+Enter your Discounted Price: 31.99
+Stock: 5
+Category: Science
+Total Cost: 159.95
+------------------------
+ Thank you for visiting our Bookstore :)
